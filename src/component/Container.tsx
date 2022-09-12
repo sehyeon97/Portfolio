@@ -1,16 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface states {
     canFlip: boolean,
     title?: string,
     text?: string,
-    textColor?: string
+    textColor?: string,
+    width?: string,
+    height?: string,
+    backgroundColor?: string
 }
 
 const Container = (states: states) => {
+    const backgroundColor = states.backgroundColor ? states.backgroundColor : "black";
+    const width = states.width ? states.width : "250px";
+    const height = states.height ? states.height : "250px";
+
     const [flipped, setFlipped] = useState(false);
-    const [myBGColor, setMyBGColor] = useState("black");
-    const [text, setText] = useState(states.title);
+    const [myBGColor, setMyBGColor] = useState(backgroundColor);
+
+    // By default, text is displayed, not title
+    const [text, setText] = useState(states.text);
+    
+    // on component mount (first render), if flashcard, title is displayed.
+    useEffect(() => {
+        if (states.canFlip) {
+            setText(states.title);
+        }
+    }, [states.canFlip, states.title]);
 
     const onClickContainer = () => {
         if (states.canFlip) {
@@ -28,8 +44,8 @@ const Container = (states: states) => {
 
     const CustomStyle = {
         backgroundColor: myBGColor,
-        width: "250px",
-        height: "250px",
+        width: width,
+        height: height,
     }
 
     return (

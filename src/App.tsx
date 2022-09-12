@@ -1,11 +1,9 @@
 import './App.css';
-import Container from './component/Container';
+import Home from './page/HomePage';
 
 function App() {
   return (
-    <div className="App">
-      <Container canFlip={true} title="Fluids" text="this is my test box" textColor='white'/>
-    </div>
+    <Home />
   );
 }
 

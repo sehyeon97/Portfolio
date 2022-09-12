@@ -12,29 +12,17 @@ const Container = (states: states) => {
     const [myBGColor, setMyBGColor] = useState("black");
     const [text, setText] = useState(states.title);
 
-    const flipContainer = () => {
-        setFlipped(!flipped);
-    }
-
-    const flipText = () => {
-        if (flipped) {
-            setText(states.text);
-        } else {
-            setText(states.title);
-        }
-    }
-
     const onClickContainer = () => {
         if (states.canFlip) {
-            flipContainer();
+            setFlipped(!flipped);
 
             if (flipped) {
                 setMyBGColor("blue");
+                setText(states.text);
             } else {
                 setMyBGColor("black");
+                setText(states.title);
             }
-
-            flipText();
         }
     }
 

@@ -7,15 +7,17 @@ interface states {
     textColor?: string,
     width?: string,
     height?: string,
-    backgroundColor?: string
+    backgroundColor?: string,
+    fontSize?: string,
 }
 
 const Container = (states: states) => {
     const backgroundColor = states.backgroundColor ? states.backgroundColor : "black";
     const width = states.width ? states.width : "250px";
     const height = states.height ? states.height : "250px";
+    const fontSize = states.fontSize ? states.fontSize : "20px";
 
-    const [flipped, setFlipped] = useState(false);
+    const [flipped, setFlipped] = useState(true);
     const [myBGColor, setMyBGColor] = useState(backgroundColor);
 
     // By default, text is displayed, not title
@@ -45,12 +47,12 @@ const Container = (states: states) => {
     const CustomStyle = {
         backgroundColor: myBGColor,
         width: width,
-        height: height,
+        height: height
     }
 
     return (
         <div style={CustomStyle} onClick={onClickContainer}>
-            <p style={{color: states.textColor}}>{text}</p>
+            <p style={{color: states.textColor, fontSize: fontSize}}>{text}</p>
         </div>
     );
     

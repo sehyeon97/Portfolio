@@ -1,9 +1,15 @@
-import './App.css';
+import { Navigate, BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './page/HomePage';
+import Fluids from './page/FluidsPage';
 
 function App() {
   return (
-    <Home />
+    <BrowserRouter>
+      <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/Chapter15_Fluids" element={<Fluids/>}/>
+      </Routes>
+      </BrowserRouter>
   );
 }
 

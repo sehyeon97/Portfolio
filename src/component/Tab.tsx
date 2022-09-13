@@ -2,13 +2,16 @@ import Container from "./Container";
 
 interface TabSettings {
     numberOfTabs: number,
+    tabNames: any,
     width?: string,
 }
 
 const Tab = (settings: TabSettings) => {
     let tabContainer = [];
+    const text = settings.tabNames;
+
     for (let i = 0; i < settings.numberOfTabs; i++) {
-        tabContainer[i] = <Container canFlip={false} width="150px" height="50px" backgroundColor="wheat"/>
+        tabContainer[i] = <Container canFlip={false} width="150px" height="50px" backgroundColor="wheat" text={text[i]} textColor="black"/>
     }
 
     const TabStyles = {

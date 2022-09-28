@@ -1,38 +1,46 @@
-import Container from "./TabProp";
+
 
 interface TabSettings {
-    tabName: string,
     tabOrder: string,
+    tabName: string,
+    text?: string,
     textColor?: string,
+    fontSize?: string,
     backgroundColor?: string,
-    padding: boolean,
+    width?: string,
+    height?: string,
     paddingLeft?: string,
     paddingRight?: string
 }
 
 const Tab = (settings: TabSettings) => {
-    const text = settings.tabName;
     const order = settings.tabOrder;
-    const padding = settings.padding;
+    const tabName = settings.tabName;
+    const textColor = settings.textColor;
+    const backgroundColor = settings.backgroundColor ? settings.backgroundColor : "wheat";
+    const width = settings.width;
+    const height = settings.height;
+    const paddingLeft = settings.paddingLeft;
+    const paddingRight = settings.paddingRight;
 
-    let paddingLeft = undefined;
-    let paddingRight = undefined;
-
-    if (padding) {
-        paddingLeft = settings.paddingLeft;
-        paddingRight = settings.paddingRight;
+    const TabFlexStyle = {
+        // flex: 1,
+        order: order,
+        paddingLeft: paddingLeft,
+        paddingRight: paddingRight,
     }
 
     const TabStyle = {
-        flex: 1,
-        order: order,
-        paddingLeft: paddingLeft,
-        paddingRight: paddingRight
+        textColor: textColor,
+        backgroundColor: backgroundColor,
+        width: width ? width : "150px",
+        height: height ? height : "50px",
+        cursor: "pointer"
     }
 
     return (
-        <div style={TabStyle}>
-            <Container canFlip={false} width="150" height="50px" backgroundColor="wheat" text={text} textColor="black"/>
+        <div style={TabFlexStyle}>
+            <button style={TabStyle} onClick={() => alert("hello")}>{tabName}</button>
         </div>
     );
 }

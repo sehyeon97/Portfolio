@@ -12,7 +12,7 @@ interface states {
 }
 
 const TabProp = (states: states) => {
-    const backgroundColor = states.backgroundColor ? states.backgroundColor : "black";
+    const backgroundColor = states.backgroundColor;
     const width = states.width ? states.width : "250px";
     const height = states.height ? states.height : "250px";
     const fontSize = states.fontSize ? states.fontSize : "20px";
@@ -51,7 +51,7 @@ const TabProp = (states: states) => {
     }
 
     return (
-        <div style={CustomStyle} onClick={onClickContainer}>
+        <div onClick={onClickContainer}>
             <p style={{color: states.textColor, fontSize: fontSize}}>{text}</p>
         </div>
     );

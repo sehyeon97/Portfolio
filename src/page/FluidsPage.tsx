@@ -1,4 +1,4 @@
-import Container from "../component/TabProp";
+import Container from "../component/Container";
 
 const Fluids = () => {
     return (

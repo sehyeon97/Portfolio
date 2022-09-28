@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 
 
 interface TabSettings {
@@ -13,21 +14,25 @@ interface TabSettings {
     paddingRight?: string
 }
 
+let mappedPaths = new Map();
+mappedPaths.set("Project 1", "/Project1");
+mappedPaths.set("Project 2", "/Project2");
+mappedPaths.set("Project 3", "/Project3");
+mappedPaths.set("Contact Me", "/Contact");
+
 const Tab = (settings: TabSettings) => {
     const order = settings.tabOrder;
     const tabName = settings.tabName;
     const textColor = settings.textColor;
-    const backgroundColor = settings.backgroundColor ? settings.backgroundColor : "wheat";
+    const backgroundColor = settings.backgroundColor ? settings.backgroundColor : "red";
     const width = settings.width;
     const height = settings.height;
-    const paddingLeft = settings.paddingLeft;
-    const paddingRight = settings.paddingRight;
+
+    const navigate = useNavigate();
 
     const TabFlexStyle = {
-        // flex: 1,
-        order: order,
-        paddingLeft: paddingLeft,
-        paddingRight: paddingRight,
+        flex: 1,
+        order: order
     }
 
     const TabStyle = {
@@ -38,9 +43,14 @@ const Tab = (settings: TabSettings) => {
         cursor: "pointer"
     }
 
+    const eventHandler = (path: string) => {
+        const pathValue = mappedPaths.get(path);
+        navigate(pathValue);
+    }
+
     return (
         <div style={TabFlexStyle}>
-            <button style={TabStyle} onClick={() => alert("hello")}>{tabName}</button>
+            <button style={TabStyle} onClick={() => eventHandler(tabName)}>{tabName}</button>
         </div>
     );
 }

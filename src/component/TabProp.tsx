@@ -11,7 +11,7 @@ interface states {
     fontSize?: string,
 }
 
-const Container = (states: states) => {
+const TabProp = (states: states) => {
     const backgroundColor = states.backgroundColor ? states.backgroundColor : "black";
     const width = states.width ? states.width : "250px";
     const height = states.height ? states.height : "250px";
@@ -58,4 +58,4 @@ const Container = (states: states) => {
     
 }
 
-export default Container;
+export default TabProp;

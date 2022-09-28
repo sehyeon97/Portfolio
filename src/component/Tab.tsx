@@ -1,29 +1,38 @@
-import Container from "./Container";
+import Container from "./TabProp";
 
 interface TabSettings {
-    numberOfTabs: number,
-    tabNames: any,
-    width?: string,
+    tabName: string,
+    tabOrder: string,
+    textColor?: string,
+    backgroundColor?: string,
+    padding: boolean,
+    paddingLeft?: string,
+    paddingRight?: string
 }
 
 const Tab = (settings: TabSettings) => {
-    let tabContainer = [];
-    const text = settings.tabNames;
+    const text = settings.tabName;
+    const order = settings.tabOrder;
+    const padding = settings.padding;
 
-    for (let i = 0; i < settings.numberOfTabs; i++) {
-        tabContainer[i] = <Container canFlip={false} width="150px" height="50px" backgroundColor="wheat" text={text[i]} textColor="black"/>
+    let paddingLeft = undefined;
+    let paddingRight = undefined;
+
+    if (padding) {
+        paddingLeft = settings.paddingLeft;
+        paddingRight = settings.paddingRight;
     }
 
-    const TabStyles = {
-        display: "flex",
-        justifyContent: "center"
+    const TabStyle = {
+        flex: 1,
+        order: order,
+        paddingLeft: paddingLeft,
+        paddingRight: paddingRight
     }
 
     return (
-        <div style={TabStyles}>
-            {tabContainer.map(tab => (
-                <h1 style={{padding: "10px"}}>{tab}</h1>
-            ))}
+        <div style={TabStyle}>
+            <Container canFlip={false} width="150" height="50px" backgroundColor="wheat" text={text} textColor="black"/>
         </div>
     );
 }
